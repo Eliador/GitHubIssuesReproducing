@@ -1,0 +1,76 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<CommandTable xmlns="http://schemas.microsoft.com/VisualStudio/2005-10-18/CommandTable" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+  <Extern href="stdidcmd.h"/>
+  <Extern href="vsshlids.h"/>
+
+  <Commands package="guidRenamingPackage">
+    <Groups>
+      <Group guid="guidFolderRenamingPackageCmdSet" id="MyMenuGroup" priority="0x0600" />
+      <Group guid="guidProjectRenamingPackageCmdSet" id="MyMenuGroup" priority="0x0601" />
+    </Groups>
+
+    <Buttons>
+      <Button guid="guidFolderRenamingPackageCmdSet" id="FolderRenamingPackageCommandId" priority="0x0100" type="Button">
+        <Icon guid="guidImages" id="bmpPic1" />
+        <CommandFlag>DynamicVisibility</CommandFlag>
+        <CommandFlag>DefaultInvisible</CommandFlag>
+        <Strings>
+          <ButtonText>Rebuild Namespace</ButtonText>
+        </Strings>
+      </Button>
+      <Button guid="guidProjectRenamingPackageCmdSet" id="ProjectRenamingPackageCommandId" priority="0x0101" type="Button">
+        <Icon guid="guidImages" id="bmpPic1" />
+        <CommandFlag>DynamicVisibility</CommandFlag>
+        <CommandFlag>DefaultInvisible</CommandFlag>
+        <Strings>
+          <ButtonText>Rebuild Namespace</ButtonText>
+        </Strings>
+      </Button>
+    </Buttons>
+
+    <Bitmaps>
+      <Bitmap guid="guidImages" href="Resources\RebuilNamespaceIcon.png" usedList="bmpPic1"/>
+    </Bitmaps>
+  </Commands>
+
+  <CommandPlacements>
+    <CommandPlacement guid="guidFolderRenamingPackageCmdSet" id="MyMenuGroup" priority="0x1000">
+      <Parent guid="guidSHLMainMenu" id="IDM_VS_CTXT_ITEMNODE"/>
+    </CommandPlacement>
+    <CommandPlacement guid="guidFolderRenamingPackageCmdSet" id="MyMenuGroup" priority="0x1000">
+      <Parent guid="guidSHLMainMenu" id="IDM_VS_CTXT_FOLDERNODE"/>
+    </CommandPlacement>
+    <CommandPlacement guid="guidFolderRenamingPackageCmdSet" id="FolderRenamingPackageCommandId" priority="0x0001" >
+      <Parent guid="guidFolderRenamingPackageCmdSet" id="MyMenuGroup"/>
+    </CommandPlacement>
+
+    <CommandPlacement guid="guidProjectRenamingPackageCmdSet" id="MyMenuGroup" priority="0x1001">
+      <Parent guid="guidSHLMainMenu" id="IDM_VS_CTXT_PROJNODE"/>
+    </CommandPlacement>
+    <CommandPlacement guid="guidProjectRenamingPackageCmdSet" id="MyMenuGroup" priority="0x1001">
+      <Parent guid="guidSHLMainMenu" id="IDM_VS_CTXT_WEBPROJECT"/>
+    </CommandPlacement>
+    <CommandPlacement guid="guidProjectRenamingPackageCmdSet" id="ProjectRenamingPackageCommandId" priority="0x0002" >
+      <Parent guid="guidProjectRenamingPackageCmdSet" id="MyMenuGroup"/>
+    </CommandPlacement>
+  </CommandPlacements>
+
+  <Symbols>
+    <GuidSymbol name="guidRenamingPackage" value="{247c49fa-ec84-40c2-968a-4099602a01f2}" />
+
+    <GuidSymbol name="guidFolderRenamingPackageCmdSet" value="{26e931ef-4bcd-473c-b7db-432fc4a20d22}">
+      <IDSymbol name="MyMenuGroup" value="0x1020" />
+      <IDSymbol name="FolderRenamingPackageCommandId" value="0x0100" />
+    </GuidSymbol>
+
+    <GuidSymbol name="guidProjectRenamingPackageCmdSet" value="{C3EFAA04-6958-4017-8872-87EE61BCCE6D}">
+      <IDSymbol name="MyMenuGroup" value="0x1020" />
+      <IDSymbol name="ProjectRenamingPackageCommandId" value="0x0101" />
+    </GuidSymbol>
+
+    <GuidSymbol name="guidImages" value="{093c2ecc-77cb-4183-aa38-131336e7a7ee}" >
+      <IDSymbol name="bmpPic1" value="1" />
+    </GuidSymbol>
+  </Symbols>
+</CommandTable>
