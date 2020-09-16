@@ -1,15 +1,19 @@
 ﻿using Microsoft.CodeAnalysis;
+using Microsoft.CodeAnalysis.Text;
 
 namespace RenamingAssistance.Core.CodeAnalysis
 {
-    public abstract class ChangeBase
+    public class Change
     {
-        public ChangeBase(string newText, Document documentToChange)
+        public Change(TextSpan spanToChange, string newText, Document documentToChange)
         {
+            SpanToChange = spanToChange;
             NewText = newText;
             DocumentToChange = documentToChange;
             ApplyChange = true;
         }
+
+        public TextSpan SpanToChange { get; }
 
         public string NewText { get; }
 

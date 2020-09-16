@@ -21,18 +21,11 @@ namespace RenamingAssistance.Core.CodeAnalysis
 
         public ICollection<DocumentChanges> Changes { get; }
 
-        public void AddReplaceChange(TextSpan spanToChange, Document documentToChange, string newText)
+        public void AddChange(TextSpan spanToChange, Document documentToChange, string newText)
         {
             var documentChanges = GetDocumentChangesToAddChange(documentToChange);
 
-            documentChanges.Changes.Add(new ReplaceChange(spanToChange, newText, documentToChange));
-        }
-
-        public void AddInsertChange(int position, Document documentToChange, string newText)
-        {
-            var documentChanges = GetDocumentChangesToAddChange(documentToChange);
-
-            documentChanges.Changes.Add(new InsertChange(position, newText, documentToChange));
+            documentChanges.Changes.Add(new Change(spanToChange, newText, documentToChange));
         }
 
         private DocumentChanges GetDocumentChangesToAddChange(Document documentToChange)

@@ -10,8 +10,15 @@ namespace RenamingAssistance.Tests
 
         public static void Build(string slnPath)
         {
-            MSBuildLocator.RegisterDefaults();
-            Workspace = MSBuildWorkspace.Create();
+            if (Workspace == null)
+            {
+                MSBuildLocator.RegisterDefaults();
+                Workspace = MSBuildWorkspace.Create();
+            }
+            else 
+            {
+                Workspace.CloseSolution();
+            }
 
             Task.Run(() => Workspace.OpenSolutionAsync(slnPath)).Wait();
         }

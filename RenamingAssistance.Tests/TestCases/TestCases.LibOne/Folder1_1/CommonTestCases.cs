@@ -1,4 +1,5 @@
 ﻿using TestCases.LibOne.Folder1_1.Folder.Folder1_3;
+using TestCases.LibOne.Folder1_1.Folder.Folder1_3;
 using TestClass = TestCases.LibOne.Folder1_1.Folder.Folder1_3.Class1_3_1;
 
 namespace TestCases.LibOne.Folder1_1
@@ -10,6 +11,12 @@ namespace TestCases.LibOne.Folder1_1
         public TestCases.LibOne.Folder1_1.Folder.Folder1_3.Class1_3_1 Field2;
 
         public Folder.Folder1_3.Class1_3_1 Field3;
+
+        public Class1_3_1 Prop1 { get; set; }
+
+        public TestCases.LibOne.Folder1_1.Folder.Folder1_3.Class1_3_1 Prop2 { get; set; }
+
+        public Folder.Folder1_3.Class1_3_1 Prop3 { get; set; }
 
         public void Method1(Class1_3_1 obj)
         {

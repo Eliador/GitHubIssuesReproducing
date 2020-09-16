@@ -242,15 +242,13 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CodeAnalysis\ChangeBase.cs" />
+    <Compile Include="CodeAnalysis\Change.cs" />
     <Compile Include="CodeAnalysis\ChangesCalculationsContext.cs" />
     <Compile Include="CodeAnalysis\CodeAnalysisExtensions.cs" />
     <Compile Include="CodeAnalysis\DocumentChanges.cs" />
-    <Compile Include="CodeAnalysis\InsertChange.cs" />
     <Compile Include="CodeAnalysis\NamespaceChangesCalculator.cs" />
     <Compile Include="CodeAnalysis\NamespaceChangesProcessor.cs" />
     <Compile Include="CodeAnalysis\ProgressInfo.cs" />
-    <Compile Include="CodeAnalysis\ReplaceChange.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

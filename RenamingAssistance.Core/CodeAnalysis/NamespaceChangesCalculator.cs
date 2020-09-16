@@ -67,7 +67,7 @@ namespace RenamingAssistance.Core.CodeAnalysis
                 return null;
             }
 
-            context.AddReplaceChange(namespaceDeclaration.Name.Span, document, document.GetExpectedNamespace());
+            context.AddChange(namespaceDeclaration.Name.Span, document, document.GetExpectedNamespace());
 
             return namespaceDeclaration;
         }
@@ -94,14 +94,14 @@ namespace RenamingAssistance.Core.CodeAnalysis
                     if (referenceNode.Parent is QualifiedNameSyntax)
                     {
                         var namespaceNode = ((QualifiedNameSyntax)referenceNode.Parent).Left;
-                        context.AddReplaceChange(namespaceNode.Span, location.Document, documentNamespaceDefinition.GetExpectedNamespace());
+                        context.AddChange(namespaceNode.Span, location.Document, documentNamespaceDefinition.GetExpectedNamespace());
                     }
                     else if (referenceNode.Parent is MemberAccessExpressionSyntax)
                     {
                         var namespaceNode = ((MemberAccessExpressionSyntax)referenceNode.Parent).Expression;
                         if (namespaceNode != referenceNode)
                         {
-                            context.AddReplaceChange(namespaceNode.Span, location.Document, documentNamespaceDefinition.GetExpectedNamespace());
+                            context.AddChange(namespaceNode.Span, location.Document, documentNamespaceDefinition.GetExpectedNamespace());
                         }
                     }
                 }

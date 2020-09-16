@@ -32,13 +32,12 @@ namespace RenamingAssistance.Core.CodeAnalysis
             return newSolution;
         }
 
-        private Solution ApplyChangesToDocument(Document document, ICollection<ChangeBase> changes)
+        private Solution ApplyChangesToDocument(Document document, ICollection<Change> changes)
         {
             var oldSourceText = document.GetTextAsync().Result;
-            var textChanges = changes.OfType<ReplaceChange>().Select(x => new TextChange(x.SpanToChange, x.NewText));
-            var newLines = changes.OfType<InsertChange>().Select(x => new TextChange(new TextSpan(oldSourceText.Lines[x.Position].Start, 0), x.NewText));   
-
-            var newSourceText = oldSourceText.WithChanges(textChanges.Union(newLines));
+            var textChanges = changes.OfType<Change>().Select(x => new TextChange(x.SpanToChange, x.NewText));
+            
+            var newSourceText = oldSourceText.WithChanges(textChanges);
             var newDocument = document.WithText(newSourceText);
 
             return newDocument.Project.Solution;

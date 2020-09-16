@@ -164,6 +164,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CodeAnalysis\Common\ExpectedChange.cs" />
+    <Compile Include="CodeAnalysis\Common\NamespaceChangesCalculatorTestsBase.cs" />
     <Compile Include="CodeAnalysis\NamespaceChangesCalculatorCommonCasesTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TestsSetup.cs" />

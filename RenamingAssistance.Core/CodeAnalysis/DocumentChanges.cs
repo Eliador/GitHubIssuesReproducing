@@ -14,6 +14,6 @@ namespace RenamingAssistance.Core.CodeAnalysis
 
         public bool ApplyChangesForDocument { get; set; } = true;
 
-        public ICollection<ChangeBase> Changes { get; } = new List<ChangeBase>();
+        public ICollection<Change> Changes { get; } = new List<Change>();
     }
 }

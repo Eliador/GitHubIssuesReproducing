@@ -20,8 +20,7 @@ namespace RenamingAssistance.VSIX.ViewModel.Common
             var textSource = documentChanges.TargetDocument.GetTextAsync().Result;
             if (textSource != null)
             {
-                var changesToApply = documentChanges.Changes.OfType<ReplaceChange>().OrderBy(x => x.SpanToChange.Start).ToList();
-                var insertChanges = documentChanges.Changes.OfType<InsertChange>().OrderBy(x => x.Position).ToList();
+                var changesToApply = documentChanges.Changes.OfType<Change>().OrderBy(x => x.SpanToChange.Start).ToList();
                 var linesWithChanges = textSource.Lines.Select(l => new
                 {
                     Line = l,
@@ -31,9 +30,6 @@ namespace RenamingAssistance.VSIX.ViewModel.Common
                 var newLinePartsFromPrevStep = new List<Inline>();
                 foreach (var lineWithChanges in linesWithChanges)
                 {
-                    var changesToInsert = insertChanges.Where(x => x.Position == lineWithChanges.Line.LineNumber).ToList();
-                    lines.AddRange(BuildInsertLines(changesToInsert));
-
                     if (!lineWithChanges.Changes.Any())
                     {
                         lines.Add(CreateRun(lineWithChanges.Line.ToString(), Color.FromRgb(255, 255, 255)));
@@ -56,14 +52,6 @@ namespace RenamingAssistance.VSIX.ViewModel.Common
             return lines;
         }
 
-        private IEnumerable<Inline> BuildInsertLines(ICollection<InsertChange> insertChanges)
-        {
-            foreach (var change in insertChanges)
-            {
-                yield return CreateRun(change.NewText, _changedPartOfInsertText);
-            }
-        }
-
         private bool IsLineContainsChange(TextLine line, TextSpan change)
         {
             return (change.Start >= line.Start && change.Start < line.End)
@@ -71,7 +59,7 @@ namespace RenamingAssistance.VSIX.ViewModel.Common
                 || (change.Start <= line.Start && change.End >= line.End);
         }
 
-        private LinePartsWithChanges GetLineParts(TextLine textLine, ICollection<ReplaceChange> changes, List<Inline> newLinePartsFromPrevStep)
+        private LinePartsWithChanges GetLineParts(TextLine textLine, ICollection<Change> changes, List<Inline> newLinePartsFromPrevStep)
         {
             var lineStartedFrom = 0;
             var text = textLine.ToString();
